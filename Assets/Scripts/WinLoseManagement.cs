@@ -30,13 +30,12 @@ public class WinLoseManagement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        checkHazards();
         checkVictory();
     }
 
-    void checkHazards()
+    private void OnTriggerEnter(Collider other)
     {
-        if (Physics2D.OverlapCircle(hitBoxTransform.position, 0.1f, hazardsLayerMask) && !isDead)
+        if (other.gameObject.CompareTag("killVolume"))
         {
             gameOver();
         }
@@ -99,9 +98,10 @@ public class WinLoseManagement : MonoBehaviour
     {
         isDead = true;
         Debug.Log("you died!");
-        endGameMessage.gameObject.SetActive(true);
-        endGameMessage.text = "Oh no!";
+        //endGameMessage.gameObject.SetActive(true);
+        //endGameMessage.text = "Oh no!";
         //put text on screen or something idk i just work here
-        restartButton.gameObject.SetActive(true);
+        //restartButton.gameObject.SetActive(true);
+        restartGame();
     }
 }
