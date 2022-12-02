@@ -50,7 +50,7 @@ public class WinLoseManagement : MonoBehaviour
         }
     }
 
-    void CollectCandy(Collider2D collision)
+    void CollectCandy(BoxCollider collision)
     {
         candyCount++;
         candyCollectedLabel.text = "POINTS: " + candyCount.ToString();
