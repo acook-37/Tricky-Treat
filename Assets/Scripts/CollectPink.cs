@@ -20,7 +20,7 @@ public class CollectPink : MonoBehaviour
     {
        if (other.name =="PF_pumpkin")
         {
-            other.GetComponent<PlayerCollect>().points+=3;
+            other.GetComponent<PlayerCollect>().score+=3;
             Destroy(gameObject); 
         }
     }
