@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class PlayerCollect : MonoBehaviour
 {
-   
+    public static PlayerCollect instanceRef;
 
     [SerializeField]
     Text scoreText;
@@ -22,6 +23,10 @@ public class PlayerCollect : MonoBehaviour
     {
         scoreText.text = "Score:  " + score;
     }
-    
 
+    public void ResetPlayerCollect()
+    {
+        score = 0;
+        
+    }
 }
