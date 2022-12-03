@@ -18,13 +18,17 @@ public class WinLoseManagement : MonoBehaviour
     public Text endGameMessage;
     public Button restartButton;
 
+    [SerializeField]
+    int winScore = 30;
+
     // Start is called before the first frame update
     void Start()
     {
         isDead = false;
         isVictor = false;
-        restartButton.gameObject.SetActive(false);
-        endGameMessage.gameObject.SetActive(false);
+      
+      //restartButton.gameObject.SetActive(false);
+      //  endGameMessage.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,6 +36,8 @@ public class WinLoseManagement : MonoBehaviour
     {
         checkVictory();
     }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -104,4 +110,5 @@ public class WinLoseManagement : MonoBehaviour
         //restartButton.gameObject.SetActive(true);
         restartGame();
     }
+
 }
