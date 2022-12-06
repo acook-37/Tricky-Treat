@@ -810,9 +810,13 @@ MonoBehaviour:
   winLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  hasControl: 0
   candyCollectedLabel: {fileID: 0}
   endGameMessage: {fileID: 0}
   restartButton: {fileID: 8994932546457708496}
+  openGoal: {fileID: 0}
+  closeGoal: {fileID: 0}
+  pCollect: {fileID: 8994932545741592202}
   winScore: 30
 --- !u!1 &8994932545778032608
 GameObject:

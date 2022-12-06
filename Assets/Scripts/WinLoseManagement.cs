@@ -12,11 +12,17 @@ public class WinLoseManagement : MonoBehaviour
 
     private bool isDead;
     private bool isVictor;
+    public bool hasControl;
 
     private int candyCount = 0;
     public Text candyCollectedLabel;
     public Text endGameMessage;
     public Button restartButton;
+
+    public GameObject openGoal;
+    public GameObject closeGoal;
+
+    public PlayerCollect pCollect;
 
     [SerializeField]
     int winScore = 30;
@@ -26,18 +32,22 @@ public class WinLoseManagement : MonoBehaviour
     {
         isDead = false;
         isVictor = false;
-      
+        hasControl = true;
+
+        openGoal.SetActive(false);
+
       //restartButton.gameObject.SetActive(false);
       //  endGameMessage.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        checkVictory();
+        if(checkComplete())
+        {
+            openGoal.SetActive(true);
+            closeGoal.SetActive(false);
+        }
     }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,15 +55,14 @@ public class WinLoseManagement : MonoBehaviour
         {
             gameOver();
         }
-    }
 
-    void checkVictory()
-    {
-        if (Physics2D.OverlapCircle(hitBoxTransform.position, 0.1f, winLayerMask) && !isDead)
+        if (other.gameObject.CompareTag("winVolume"))
         {
             winGame();
         }
     }
+
+    
 
     void CollectCandy(BoxCollider collision)
     {
@@ -93,11 +102,12 @@ public class WinLoseManagement : MonoBehaviour
     {
         isVictor = true;
         Debug.Log("you win!");
+        hasControl = false;
         //AudioSource.PlayClipAtPoint(candyCollectSound, transform.position);
-        endGameMessage.gameObject.SetActive(true);
-        endGameMessage.text = "You're free of the curse!";
+        //endGameMessage.gameObject.SetActive(true);
+        //endGameMessage.text = "You're free of the curse!";
         //put text on screen or something idk i just work here
-        restartButton.gameObject.SetActive(true);
+        //restartButton.gameObject.SetActive(true);
     }
 
     void gameOver()
@@ -111,4 +121,16 @@ public class WinLoseManagement : MonoBehaviour
         restartGame();
     }
 
+    bool checkComplete()
+    {
+        if (pCollect.score >= winScore)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
 }
