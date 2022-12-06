@@ -49,6 +49,20 @@ public class WinLoseManagement : MonoBehaviour
             openGoal.SetActive(true);
             closeGoal.SetActive(false);
         }
+
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            restartGame();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,7 +111,7 @@ public class WinLoseManagement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // loads current scene
         Debug.Log("restart pressed");
-       
+       Time.timeScale= 1;
 
     }
 
@@ -109,9 +123,11 @@ public class WinLoseManagement : MonoBehaviour
         hasControl = false;
         //AudioSource.PlayClipAtPoint(candyCollectSound, transform.position);
         resultsPanel.gameObject.SetActive(true);
-        resultsText.text = "You're free of the curse!";
+        resultsText.text = "You're free of the curse! Press 'R' to restart.";
         //put text on screen or something idk i just work here
         restartButton.gameObject.SetActive(false);
+        Time.timeScale = 0;
+
     }
 
     void gameOver()
