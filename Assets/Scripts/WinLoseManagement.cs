@@ -16,11 +16,12 @@ public class WinLoseManagement : MonoBehaviour
 
     private int candyCount = 0;
     public Text candyCollectedLabel;
-    public Text endGameMessage;
+    public Text resultsText;
     public Button restartButton;
 
     public GameObject openGoal;
     public GameObject closeGoal;
+    public GameObject resultsPanel;
 
     public PlayerCollect pCollect;
 
@@ -35,9 +36,10 @@ public class WinLoseManagement : MonoBehaviour
         hasControl = true;
 
         openGoal.SetActive(false);
-
-      //restartButton.gameObject.SetActive(false);
-      //  endGameMessage.gameObject.SetActive(false);
+        resultsText.text = "Score " + winScore + " to win and free yourself of the curse.";
+        restartButton.gameObject.SetActive(false);
+        restartButton.onClick.AddListener(restartGame);
+        resultsPanel.gameObject.SetActive(true);
     }
 
     private void FixedUpdate()
@@ -95,6 +97,8 @@ public class WinLoseManagement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // loads current scene
         Debug.Log("restart pressed");
+       
+
     }
 
     //win and lose
@@ -104,20 +108,20 @@ public class WinLoseManagement : MonoBehaviour
         Debug.Log("you win!");
         hasControl = false;
         //AudioSource.PlayClipAtPoint(candyCollectSound, transform.position);
-        //endGameMessage.gameObject.SetActive(true);
-        //endGameMessage.text = "You're free of the curse!";
+        resultsPanel.gameObject.SetActive(true);
+        resultsText.text = "You're free of the curse!";
         //put text on screen or something idk i just work here
-        //restartButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(false);
     }
 
     void gameOver()
     {
         isDead = true;
         Debug.Log("you died!");
-        //endGameMessage.gameObject.SetActive(true);
-        //endGameMessage.text = "Oh no!";
+        resultsPanel.gameObject.SetActive(true);
+        resultsText.text = "Oh no!";
         //put text on screen or something idk i just work here
-        //restartButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(false);
         restartGame();
     }
 
